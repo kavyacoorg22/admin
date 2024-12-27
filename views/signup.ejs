@@ -12,7 +12,7 @@
     
   
     
-    <form class="login-form" action="signup" method="post">
+    <form class="login-form" action="signup" method="POST" id="loginform">
       
       <h2>Sign in</h2>
       <div class="input-group">
@@ -26,7 +26,41 @@
       <button type="submit" class="login-btn">Login</button>
     </form>
   </div>
- 
+  <script>
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        // Send login request using fetch
+        const response = await fetch('http://localhost:3000/admin/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+
+        // Handle response
+        if (response.ok) {
+          const data = await response.json();
+          alert(`Login successful: ${data.message}`);
+          console.log('Token:', data.token); // Handle token (e.g., save it to localStorage)
+        } else {
+          const error = await response.json();
+          alert(`Error: ${error.message}`);
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
 </body>
 </html>
 

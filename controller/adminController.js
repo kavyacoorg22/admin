@@ -1,4 +1,5 @@
 const signinModel=require('../model/signinModel')
+const bcrypt=require('bcrypt');
 
 const loadSignup=async(req,res)=>
 {
@@ -8,7 +9,8 @@ const loadSignup=async(req,res)=>
 const signup=async(req,res)=>
 {
   try{
-    const {email, password} = req.body
+    const {email, password} = req.body;
+    console.log(req.body.email)
     console.log(email,password)
 
     const admin = await signinModel.findOne({email})
@@ -21,7 +23,7 @@ const signup=async(req,res)=>
 
     if(!isMatch) return res.render('signup', { title: 'Signin', layout: './layout/auth-layout' ,message: 'Invalid credentials'})
 
-    req.session.admin = true
+  //  req.session.admin = true
 
     res.redirect('/admin/dashboard')
      

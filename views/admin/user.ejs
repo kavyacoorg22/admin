@@ -1,0 +1,85 @@
+<div class="content-wrapper">
+    <h1 class="page-title">Users</h1>
+    <p class="page-subtitle">Manage all users here</p>
+
+    <input type="text" class="search-box" placeholder="Search users...">
+
+    <table class="users-table">
+        <thead>
+            <tr>
+                <th class="profile-cell">Profile</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th class="status-cell">Status</th>
+                <th class="actions-cell">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="profile-cell">
+                    <div class="profile-image">
+                        <img src="/api/placeholder/35/35" alt="John Doe">
+                    </div>
+                </td>
+                <td class="name-cell">John Doe</td>
+                <td class="email-cell">johndoe@example.com</td>
+                <td>
+                    <div class="status-cell">
+                        <label class="status-toggle">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <span class="status-label">Active</span>
+                    </div>
+                </td>
+                <td class="actions-cell">
+                    <div class="action-buttons">
+                        <button class="btn-edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="profile-cell">
+                    <div class="profile-image">
+                        <img src="/api/placeholder/35/35" alt="Jane Smith">
+                    </div>
+                </td>
+                <td class="name-cell">Jane Smith</td>
+                <td class="email-cell">janesmith@example.com</td>
+                <td>
+                    <div class="status-cell">
+                        <label class="status-toggle">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="status-label">Blocked</span>
+                    </div>
+                </td>
+                <td class="actions-cell">
+                    <div class="action-buttons">
+                        <button class="btn-edit">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button class="page-button active">1</button>
+        <button class="page-button">2</button>
+        <button class="page-button">3</button>
+        <button class="page-button">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+</div>

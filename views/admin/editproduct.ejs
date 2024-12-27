@@ -1,0 +1,72 @@
+<div class="form-container">
+  <div class="content-header">
+    <h1 class="content-title">Edit Products</h1>
+  </div>
+
+  <form>
+    <div class="form-layout">
+      <div class="form-left">
+        <div class="form-group">
+          <label class="form-label">Product title</label>
+          <input type="text" class="form-input" value="Product name goes here">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Full description</label>
+          <textarea class="form-textarea">Product description goes here</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Media</label>
+          <div class="image-grid">
+            <div class="image-item">
+              <img src="https://via.placeholder.com/150" alt="Product image 1">
+              <button type="button" class="delete-btn">Delete</button>
+            </div>
+            <div class="image-item">
+              <img src="https://via.placeholder.com/150" alt="Product image 2">
+              <button type="button" class="delete-btn">Delete</button>
+            </div>
+            <div class="upload-box">
+              <div class="upload-icon">+</div>
+              <div>Upload new image</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-right">
+        <div class="form-group">
+          <label class="form-label">Price</label>
+          <input type="number" class="form-input" value="98.00">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category</label>
+          <select class="form-select">
+            <option value="vegetables" selected>Vegetables</option>
+            <option value="fruits">Fruits</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select class="form-select">
+            <option value="in-stock" selected>In stock</option>
+            <option value="out-of-stock">Out of stock</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Quantity</label>
+          <input type="number" class="form-input" placeholder="Enter quantity">
+        </div>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="button" class="btn btn-cancel">Cancel</button>
+      <button type="submit" class="btn btn-save">Save Changes</button>
+    </div>
+  </form>
+</div>

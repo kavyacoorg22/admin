@@ -1,44 +1,67 @@
 const signinModel=require('../model/signinModel')
 const bcrypt=require('bcrypt');
+const {validateSignUpData}=require('../utils/validation')
+
+
 
 const loadSignup=async(req,res)=>
 {
-  res.render('signup',{ title: 'Signin', layout: './layout/auth-layout' })
-}
-
-const signup=async(req,res)=>
+ try{
+  
+  res.render('signup', { email: ' ', password: ' ',title: 'Signin', layout: './layout/auth-layout' });
+}catch(err)
 {
-  try{
-    const {email, password} = req.body;
-    console.log(req.body.email)
-    console.log(email,password)
-
-    const admin = await signinModel.findOne({email})
-
-
-    if(!admin) return res.render('signup', { title: 'Signin', layout: './layout/auth-layout' ,message: 'Invalid credentials'})
-
-
-    const isMatch = await bcrypt.compare(password, admin.password)
-
-    if(!isMatch) return res.render('signup', { title: 'Signin', layout: './layout/auth-layout' ,message: 'Invalid credentials'})
-
-  //  req.session.admin = true
-
-    res.redirect('/admin/dashboard')
-     
-    }catch(err)
-    {
-    res.send(err.message)
-    }
+  res.status(400).send(err.message)
 }
+}
+
+const signup = async (req,res) => {
+  try {
+    // Validate the data
+    validateSignUpData(req);
+    
+    const {email,password} = req.body;
+  
+
+    // Check if the admin exists in the database
+    const admin = await signinModel.findOne({ email });
+    
+
+    if (!admin) {
+      // If admin is not found, return error response as JSON
+      return res.status(400).json({ message: 'Invalid credentials' });
+    }
+
+    // Compare the provided password with the stored hashed password
+    const isMatch = await bcrypt.compare(password, admin.password);
+    
+    
+   
+    
+    if (!isMatch) {
+      // If password does not match, return error response as JSON
+      return res.status(400).json({ message: 'Invalid credentials' });
+    } else {
+     
+       req.session.admin = true;  
+       return res.status(200).json({ message: 'Login successful' }); 
+        // Send success response
+    }
+
+  } catch (err) {
+    // Handle any other errors
+  
+    return res.status(500).json({ message: 'An error occurred. Please try again.' });
+  }
+};
+
 
 const loadDashboard=async(req,res)=>
 {
   try{
   
-
-   res.render('admin/dashboard',{ title: 'dashboard',csspage:'dashboard.css'})
+    res.render('admin/dashboard',{ title: 'dashboard',csspage:'dashboard.css'});
+   
   }catch(err){
      res.send(err.message)
   }
@@ -116,7 +139,10 @@ const loadEditproduct=async(req,res)=>
 
 
 
-
+     const logout=(req, res) => {
+        req.session.destroy();
+        res.redirect('/admin/login');
+    }
 
 
 

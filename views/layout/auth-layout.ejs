@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%-title%></title>
+  <title>Login Form</title>
+  <link rel="stylesheet" href="/css/signup.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <main>
-    <%-body%>
+    <%- body %> <!-- This will render the content of your specific page -->
   </main>
+
+  <!-- Correctly reference the JavaScript file -->
+  <script src="/js/sign.js" defer></script>
 </body>
 </html>

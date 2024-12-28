@@ -1,69 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Form</title>
-  <link rel="stylesheet" href="/css/signup.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
-  <div class="login-container">
-    
-  
-    
-    <form class="login-form" action="signup" method="POST" id="loginform">
-      
-      <h2>Sign in</h2>
-      <div class="input-group">
-        <label class='labels' for="email">email</label>
-        <input type="text"  placeholder="Username or email" name="email" id="email" required>
-      </div>
-      <div class="input-group">
-        <label class='labels' for="password">password</label>
-        <input type="password" placeholder="Password" name="password" id="password" required>
-      </div>
-      <button type="submit" class="login-btn">Login</button>
-    </form>
-  </div>
-  <script>
-    const loginForm = document.getElementById('loginForm');
-
-    loginForm.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent default form submission
-
-      // Get form data
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-
-      try {
-        // Send login request using fetch
-        const response = await fetch('http://localhost:3000/admin/signup', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
-
-        // Handle response
-        if (response.ok) {
-          const data = await response.json();
-          alert(`Login successful: ${data.message}`);
-          console.log('Token:', data.token); // Handle token (e.g., save it to localStorage)
-        } else {
-          const error = await response.json();
-          alert(`Error: ${error.message}`);
-        }
-      } catch (err) {
-        console.error('Error:', err);
-        alert('An error occurred. Please try again.');
-      }
-    });
-  </script>
-</body>
-</html>
-
-
+<div class="login-container">
+  <form class="login-form" method="POST" id="loginform">
+    <h2>Sign in</h2>
+    <div class="input-group">
+      <label class='labels' for="email">email</label>
+      <input type="text" placeholder="enter email" name="email" id="email" value="<%=email%>" required>
+    </div>
+    <div class="input-group">
+      <label class='labels' for="password">password</label>
+      <input type="password" placeholder="Password" name="password" id="password" value="<%=password%>" required>
+    </div>
+    <button type="submit" class="login-btn" id="signupForm">Login</button>
+  </form>
+</div>
 
 

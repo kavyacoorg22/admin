@@ -1,41 +1,54 @@
 require('dotenv').config();
 const express = require('express');
-const app = express();
 const expressLayout = require('express-ejs-layouts');
-const adminRoutes=require('./router/admin')
-const connectDB=require('./db/connectDB')
+const session = require('express-session');
+const adminRoutes = require('./router/admin');
+const connectDB = require('./db/connectDB');
+const nocache=require('nocache')
+const cors = require('cors');
+
+
+
+const app = express();
 const port = process.env.PORT || 3000;
 
-// Middleware to parse JSON request body
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Middleware to parse request body
+app.use(express.json()); // Parse JSON payloads
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded payloads
+
+app.use(nocache())
+app.use(cors());
 
 // Static Files
 app.use(express.static('public'));
-app.use('/css', express.static(__dirname + '/public/css'));
-app.use('/img', express.static(__dirname + '/public/img'));
-app.use('/js', express.static(__dirname + '/public/js'));
 
-// Setting Views Folder and View Engine
+// View Engine and Layouts
+app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(expressLayout);
-app.set('layout', './layout/admin-layout.ejs'); // Default layout for all views
-app.set('view engine', 'ejs');
+app.set('layout', './layout/admin-layout.ejs'); // Default layout
+
+// Session Middleware
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || 'mysecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === 'production'? true : false  }, // Secure cookies in production
+  })
+);
 
 // Routes
-app.use('/admin',adminRoutes)
 
 
-//connect databse before listening on to the port
+app.use('/admin', adminRoutes);
+
+// Connect to Database and Start Server
 connectDB()
-.then(()=>
-{
-  console.log("Database connection established")
-  // Start the Server
-  app.listen(port, () => console.log(`Server running properly on http://localhost:${port}`));
-})
-.catch(()=>
-{
-  console.log('Database connection failed')
-})
-
+  .then(() => {
+    console.log('Database connection established');
+    app.listen(port, () => console.log(`Server running on http://localhost:${port}`));
+  })
+  .catch((err) => {
+    console.error('Database connection failed:', err);
+  });

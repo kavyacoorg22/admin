@@ -60,7 +60,7 @@ const loadDashboard=async(req,res)=>
 {
   try{
   
-    res.render('admin/dashboard',{ title: 'dashboard',csspage:'dashboard.css'});
+    res.render('admin/dashboard',{ title:'dashboard',csspage:'dashboard.css'});
    
   }catch(err){
      res.send(err.message)
@@ -139,12 +139,19 @@ const loadEditproduct=async(req,res)=>
 
 
 
-     const logout=(req, res) => {
-        req.session.destroy();
-        res.redirect('/admin/login');
+ const logout=(req,res) => {
+
+  req.session.destroy((err) => {
+    if (err) {
+      console.error('Failed to destroy session:', err);
+      return res.status(500).send('Failed to log out');
     }
 
+    res.redirect('/admin/signup');  // Redirect to login page after logout
+  });
+}
 
 
 
-    module.exports={loadSignup,signup,loadDashboard,loadcategory,loadproduct,loaduser,loadCreatecat,loadAddproduct,loadEditproduct}
+
+    module.exports={loadSignup,signup,loadDashboard,loadcategory,loadproduct,loaduser,loadCreatecat,loadAddproduct,loadEditproduct,logout}

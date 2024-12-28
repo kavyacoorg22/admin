@@ -33,7 +33,7 @@
       </li>
       
       <li class="menu-item">
-          <a href="#" class="menu-link">
+          <a href="#" class="menu-link" onclick="category(event)">
               <i class="fas fa-tags"></i>
               <span class="menu-text">Categories</span>
           </a>
@@ -63,10 +63,39 @@
       <div class="divider"></div>
       
       <li class="menu-item">
-          <a href="#" class="menu-link">
-              <i class="fas fa-sign-out-alt"></i>
-              <span class="menu-text">Log Out</span>
-          </a>
+        <a href="#" class="menu-link" onclick="logout(event)">
+          <i class="fas fa-sign-out-alt"></i>
+          <span class="menu-text">Log Out</span>
+        </a>
       </li>
-  </ul>
-</aside>
+</ul>
+</aside>      
+      <script>
+        //logout
+        function logout(event) {
+          event.preventDefault();  // Prevent the default anchor tag behavior 
+      
+        fetch('/admin/logout', {
+            method: 'POST',  // Use POST for logout
+            credentials: 'same-origin'  
+          })
+          .then(response => {
+            if (response.ok) {
+              window.location.href = '/admin/signup';  // Redirect after successful logout
+            } else {
+              alert('Logout failed!');
+            }
+          })
+          .catch(error => {
+            console.error('Error during logout:', error);
+          });
+        }
+
+        //category
+        function category(event)
+        {
+            event.preventDefault() //prevent default behaviour
+            fetch('admin/category')
+        }
+      </script>
+      

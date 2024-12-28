@@ -3,12 +3,10 @@ const router=express.Router();
 const adminController=require('../controller/adminController');
 const adminAuth=require('../middleware/adminAuth')
 
-router.get('/check-auth', (req, res) => {
-  res.json({ isLoggedIn: !!req.session.admin });
-});
 
 
 
+router.post('/logout',adminController.logout)
 router.get('/signup',adminAuth.isSignup,adminController.loadSignup)
 router.post('/signup',adminController.signup)
 router.get('/dashboard',adminAuth.checkSession, adminController.loadDashboard)

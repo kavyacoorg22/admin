@@ -96,11 +96,11 @@ const loaduser=async(req,res)=>
     res.send(err.message)
   }
 }
-
+//load createcategory page
 const loadCreatecat=async(req,res)=>
   {
     try{
-      res.render('admin/createcategory',{title:"user",csspage:"createcategory.css"})  //user page
+      res.render('admin/createcategory',{title:"user",csspage:"createcategory.css"})  
     }catch(err)
     {
       res.send(err.message)

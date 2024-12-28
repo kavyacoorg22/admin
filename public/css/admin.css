@@ -116,12 +116,15 @@ body, html {
   transition: all 0.3s ease;
 }
 
-.menu-link:hover,
-.menu-link.active {
+.menu-link:hover
+ {
   background: #e8f5e9;
   color: #4CAF50;
 }
-
+.menu-link.active {
+  background-color: #23ad28a8;
+  color: white;
+}
 .menu-link i {
   width: 20px;
   margin-right: 10px;

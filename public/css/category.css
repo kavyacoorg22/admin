@@ -187,3 +187,12 @@
   background: white;
   cursor: pointer;
 }
+
+.createaa {
+  background-color: #10B981;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+}

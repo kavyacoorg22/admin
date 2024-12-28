@@ -4,19 +4,10 @@
           <h1>Products</h1>
           <p>Manage all your products here</p>
       </div>
-      <a href="#" class="add-product-btn">+ Add product</a>
+      <a href="/admin/addproduct" class="add-product-btn">+ Add product</a>
   </div>
 
-  <div class="search-section">
-      <div class="search-container">
-          <input type="text" placeholder="Search term" class="search-input">
-          <button class="search-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-          </button>
-      </div>
-  </div>
+  
 
   <div class="products-grid">
       <!-- Repeat this product card structure -->
@@ -28,7 +19,7 @@
               <h3 class="product-name">Product name</h3>
               <p class="product-price">$12</p>
               <div class="action-buttons">
-                  <button class="edit-btn">Edit</button>
+                  <button class="edit-btn" onclick="editproduct(event)">Edit</button>
                   <button class="delete-btn">Delete</button>
               </div>
           </div>
@@ -43,3 +34,26 @@
       <a href="#" class="page-link">></a>
   </div>
 </div>
+<script>
+    function editproduct(event)
+    {
+        event.preventDefault();
+
+        fetch('/admin/editproduct',{
+            method:"GET"
+        })
+        .then((response)=>
+        {
+        if(response.ok)
+        {
+           window.location.href="/admin/editproduct";
+        }else
+        {
+            alert("edit not possible");
+        }
+       })
+       .catch(error=>{
+         console.error("Error during edit",error)
+       })
+    }
+</script>

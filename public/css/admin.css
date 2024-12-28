@@ -119,11 +119,11 @@ body, html {
 .menu-link:hover
  {
   background: #e8f5e9;
-  color: #4CAF50;
+  color: #42cf46;
 }
 .menu-link.active {
-  background-color: #23ad28a8;
-  color: white;
+  background-color:#42cf46;
+  color: #0b780e;;
 }
 .menu-link i {
   width: 20px;

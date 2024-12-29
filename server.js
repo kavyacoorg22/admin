@@ -6,15 +6,18 @@ const adminRoutes = require('./router/admin');
 const connectDB = require('./db/connectDB');
 const nocache=require('nocache')
 const cors = require('cors');
-
+const path = require('path');
+const methodOverride = require('method-override');
+const bodyParser=require('body-parser')
 
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse request body
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // Parse JSON payloads
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded payloads
+
 
 app.use(nocache())
 app.use(cors());
@@ -27,6 +30,7 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(expressLayout);
 app.set('layout', './layout/admin-layout.ejs'); // Default layout
+app.use(methodOverride('_method'));
 
 // Session Middleware
 app.use(

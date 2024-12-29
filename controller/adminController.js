@@ -139,6 +139,8 @@ const loadEditproduct=async(req,res)=>
 
 
 
+
+
  const logout=(req,res) => {
 
   req.session.destroy((err) => {
@@ -154,4 +156,7 @@ const loadEditproduct=async(req,res)=>
 
 
 
-    module.exports={loadSignup,signup,loadDashboard,loadcategory,loadproduct,loaduser,loadCreatecat,loadAddproduct,loadEditproduct,logout}
+    module.exports={loadSignup,signup,loadDashboard,loadcategory,loadproduct,loaduser,loadCreatecat,loadAddproduct,loadEditproduct,logout,
+                    
+
+    }

@@ -2,8 +2,10 @@ const express=require('express');
 const router=express.Router();
 const adminController=require('../controller/adminController');
 const categoryController=require('../controller/categoryController')
+const productController=require('../controller/productController')
 const adminAuth=require('../middleware/adminAuth')
 const upload=require("../utils/multer");
+const validateImg=require('../middleware/validateImage')
 
 
 
@@ -23,10 +25,17 @@ router.get('/category/create',adminController.loadCreatecat)
 router.post('/category', upload.single('image'), categoryController.createcat)
 router.delete('/category/:id',categoryController.deleteCat)
 
-router.get('/product',adminController.loadproduct)
+router.get('/product',productController.loadproduct)
+router.get('/product/add',productController.loadAddproduct)
+router.get('/product/edit/:id',productController.loadEditproduct)
+router.post('/product',upload.array('images',10),validateImg,productController.product)
+router.delete('/product/delete/:id',productController.deleteProduct)
+
 router.get('/user',adminController.loaduser)
 
-router.get('/addproduct',adminController.loadAddproduct)
-router.get('/editproduct',adminController.loadEditproduct)
+router.use((err, req, res, next) => {
+  console.error('Route error:', err);
+  res.status(500).json({ error: err.message });
+});
 
 module.exports=router

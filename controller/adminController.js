@@ -77,15 +77,7 @@ const loadcategory=async(req,res)=>
   }
 }
 
-const loadproduct=async(req,res)=>
-{
-  try{
-    res.render('admin/product',{title:'product',csspage:"product.css"})//product list
-  }catch(err)
-  {
 
-  }
-}
 
 const loaduser=async(req,res)=>
 {
@@ -107,25 +99,8 @@ const loadCreatecat=async(req,res)=>
     }
   }
 
-const loadAddproduct=async(req,res)=>
-    {
-      try{
-        res.render('admin/addproducts',{title:"addproduct",csspage:"addproduct.css"})  //user page
-      }catch(err)
-      {
-        res.send(err.message)
-      }
-    }
 
-const loadEditproduct=async(req,res)=>
-      {
-        try{
-          res.render('admin/editproduct',{title:"editproduct",csspage:"editproduct.css"})  //Edit products
-        }catch(err)
-        {
-          res.send(err.message)
-        }
-      }
+
 
 
 
@@ -156,7 +131,7 @@ const loadEditproduct=async(req,res)=>
 
 
 
-    module.exports={loadSignup,signup,loadDashboard,loadcategory,loadproduct,loaduser,loadCreatecat,loadAddproduct,loadEditproduct,logout,
+    module.exports={loadSignup,signup,loadDashboard,loadcategory,loaduser,loadCreatecat,logout,
                     
 
     }

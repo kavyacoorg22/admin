@@ -29,7 +29,7 @@
   margin: 0;
 }
 
-.back-button {
+.back-button ,.add-image-button{
   background-color: #10B981;
   color: white;
   padding: 8px 16px;
@@ -90,12 +90,13 @@
 }
 
 .form-file {
-  width: 100%;
+  width: 70%;
   padding: 10px;
   border: 1px solid #e2e8f0;
   border-radius: 6px;
   background-color: #f8fafc;
   font-size: 14px;
+  display: inline-block;
 }
 
 .save-button {

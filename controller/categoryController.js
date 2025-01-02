@@ -9,7 +9,7 @@ const createcat = async (req, res) => {
     const { name, description } = req.body;
 
     if (!name || !description) {
-      return res.render('admin/createcategory', {
+      return res.render('admin/category/create', {
         error: 'Both name and description are required',
         values: req.body,
         title:"create category",

@@ -2,17 +2,14 @@ const mongoose=require("mongoose");
 const validator=require("validator");
 
 const productShema=new mongoose.Schema({
-  productname:{
+  name:{
     type:String,
     required:true,
   },
-  image:{
+  images:{
     type:[String],
     required:true,
-    validate(value){
-      if(!validator.isURL(value))
-        throw new Error('invalid photo URL');
-    }
+    
   },
   price:{
     type:Number,
@@ -28,7 +25,7 @@ const productShema=new mongoose.Schema({
   createdBy:{
     type:mongoose.Schema.Types.ObjectId,
     ref:'signin',
-    required:true
+  
   },
   offers: [{
     type: mongoose.Schema.Types.ObjectId, 
@@ -39,7 +36,12 @@ const productShema=new mongoose.Schema({
     ref: 'category', 
     required: true,
 },
-
+status: { 
+  type: String, 
+  enum: ['active', 'inactive'], 
+  default: 'active' 
+},
+isDeleted: { type: Boolean, default: false },
 },{timestamps:true})
 
 module.exports=mongoose.model('product',productShema)
